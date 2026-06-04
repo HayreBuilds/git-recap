@@ -130,3 +130,9 @@ export function getCurrentStreak(dayStats: DayStats[]): number {
   }
   return streak;
 }
+// Extended language aliases for common shorthands
+export const EXTRA_ALIASES: Record<string, string> = {
+  "mjs":"JavaScript","cjs":"JavaScript","mts":"TypeScript","cts":"TypeScript",
+  "jsx":"JavaScript","tsx":"TypeScript","rb":"Ruby","ex":"Elixir","exs":"Elixir",
+  "hs":"Haskell","clj":"Clojure","fs":"F#","ml":"OCaml","nim":"Nim","zig":"Zig",
+};
