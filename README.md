@@ -1,113 +1,98 @@
-# git-recap
+# 📊 git-recap
 
-> Weekly git activity report generator. Get a beautifully formatted summary of your commit history — paste it into a standup, weekly report, or LinkedIn update.
+[![Build Status](https://img.shields.io/github/actions/workflow/status/HayreBuilds/git-recap/ci.yml?branch=main)](https://github.com/HayreBuilds/git-recap/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/HayreBuilds/git-recap/pulls)
+[![Star History](https://img.shields.io/github/stars/HayreBuilds/git-recap?style=social)](https://github.com/HayreBuilds/git-recap/stargazers)
 
-```
-$ git-recap --days 7
+**Weekly Git Activity Report Generator. Turn your commit history into professional summaries in seconds.**
 
-  ┌─────────────────────────────────────────────────────┐
-  │             git-recap — my-project                  │
-  │             Past 7 days                             │
-  └─────────────────────────────────────────────────────┘
+> Stop struggling to remember what you did this week. **git-recap** analyzes your local repositories and generates perfectly formatted updates for standups, weekly reports, or LinkedIn.
 
-  📊 SUMMARY
-  ──────────────────────────────────────────────────────
-  Commits       23
-  Files changed 87
-  Lines added   +2.4k
-  Lines removed -891
-  Net change    +1.5k
-  Active days   5
-  Avg/day       4.6 commits
-  Streak        5 consecutive days
+---
 
-  🌐 LANGUAGES
-  ──────────────────────────────────────────────────────
-  TypeScript     ████████████████  72.4%
-  CSS            ████░░░░░░░░░░░░  14.1%
-  JSON           ██░░░░░░░░░░░░░░   8.3%
-  Markdown       █░░░░░░░░░░░░░░░   5.2%
+## 🚀 Quick Start
 
-  📅 ACTIVITY BY DAY
-  ──────────────────────────────────────────────────────
-  2025-01-13  ████████████░░        6 commits
-  2025-01-14  ██████████████████    9 commits
-  2025-01-15  ████░░░░░░░░░░        2 commits
+```bash
+# Generate a summary for the last 7 days in the current repo
+npx git-recap
 
-  🔥 BIGGEST CHANGES
-  ──────────────────────────────────────────────────────
-  a3f29b1  feat: implement real-time dashboard with websockets
-           +847 -203 in 12 files
+# Summary for the last 30 days across all your projects
+git-recap --days 30 --dir ~/projects
 ```
 
 ---
 
-## Install
+## ✨ Key Features
+
+- **📝 Automated Summaries**: Converts technical commit messages into readable bullet points.
+- **📈 Productivity Metrics**: Tracks lines changed, commit frequency, and your most active days.
+- **🌍 Multi-Repo Support**: Scan an entire directory of projects at once.
+- **🎨 Multiple Formats**: Output as Markdown, Terminal Table, or clean JSON for integrations.
+- **⚡ Fast & Private**: Runs entirely locally. Your code never leaves your machine.
+
+---
+
+## 💻 Installation
 
 ```bash
 npm install -g git-recap
-# or without installing:
-npx git-recap
 ```
 
-## Usage
+---
 
+## 🛠️ Usage Examples
+
+### Standard Weekly Recap
 ```bash
-# Report for the past 7 days (default)
-git-recap
-
-# Past 30 days
-git-recap --days 30
-
-# Specific date range
-git-recap --since 2024-01-01 --until 2024-01-31
-
-# Different repo
-git-recap --dir ../other-project
-
-# Output as markdown (paste into Notion, GitHub, etc.)
-git-recap --format markdown
-
-# Output as JSON
-git-recap --format json | jq '.stats.totalCommits'
-
-# Write to file
-git-recap --format markdown > weekly-report.md
-
-# Filter by author
-git-recap --author "Jane Doe"
-
-# Monthly report
-git-recap --days 30 --format markdown > monthly-report.md
+git-recap --days 7
 ```
 
-## Output Formats
+### Team/Manager Report (Detailed)
+```bash
+git-recap --days 14 --detailed --format markdown > report.md
+```
 
-### Text (default)
-Beautiful terminal output with Unicode box-drawing, bar charts, and color. Copy-pasteable into a standup or email.
+### Monthly Summary across all Projects
+```bash
+git-recap --days 30 --dir ~/work --dir ~/personal
+```
 
-### Markdown (`--format markdown`)
-Clean markdown tables and lists. Perfect for Notion, Confluence, GitHub issues, or LinkedIn.
+---
 
-### JSON (`--format json`)
-Full structured data. Pipe to `jq`, process in scripts, or save to a database.
+## 🔍 How it Works
 
-## Options
+1. **Git Log Analysis**: Uses `git log` to extract commit messages, authors, and timestamps.
+2. **Stats Calculation**: Computes churn (additions/deletions) and commit density.
+3. **Clustering**: Groups related commits by scope (e.g., `feat`, `fix`, `docs`) if conventional commits are used.
+4. **Formatting**: Passes the data through specialized reporters for the final output.
+
+---
+
+## ⚙️ Configuration Options
 
 | Option | Default | Description |
-|--------|---------|-------------|
-| `--days <n>` | 7 | Look back N days |
-| `--since <date>` | — | Start date (YYYY-MM-DD) |
-| `--until <date>` | today | End date (YYYY-MM-DD) |
-| `--dir <path>` | `.` | Git repository path |
-| `--format` | `text` | `text`, `markdown`, or `json` |
-| `--output <file>` | stdout | Write to file |
-| `--author <name>` | — | Filter by author name |
+|:---|:---|:---|
+| `--days <n>` | `7` | Number of days to look back |
+| `--dir <path>` | `.` | Directory to scan (can be used multiple times) |
+| `--format <type>` | `table` | Output format: `table`, `markdown`, `json` |
+| `--detailed` | `false` | Include per-commit details and churn stats |
+| `--author <name>` | (you) | Filter commits by a specific author |
 
-## Zero Dependencies
+---
 
-Uses only Node.js built-ins and `git` CLI. No npm packages required.
+## 🤝 Contributing
 
-## License
+Help make **git-recap** better! Check out our [Contributing Guide](CONTRIBUTING.md).
 
-MIT
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## 💖 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=HayreBuilds/git-recap&type=Date)](https://star-history.com/#HayreBuilds/git-recap&Date)
