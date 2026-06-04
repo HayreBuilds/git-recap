@@ -1,0 +1,40 @@
+{
+  "name": "git-recap",
+  "version": "1.0.0",
+  "description": "Weekly git activity report generator — commit summaries, language breakdowns, and productivity stats from your git history.",
+  "bin": {
+    "git-recap": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "git",
+    "cli",
+    "productivity",
+    "report",
+    "devtools",
+    "standup"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/git-recap"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/git-recap/issues"
+  },
+  "homepage": "https://github.com/yourusername/git-recap#readme"
+}
