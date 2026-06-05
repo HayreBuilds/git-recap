@@ -113,26 +113,3 @@ export const EXTRA_ALIASES: Record<string, string> = {
   "jsx":"JavaScript","tsx":"TypeScript","rb":"Ruby","ex":"Elixir","exs":"Elixir",
   "hs":"Haskell","clj":"Clojure","fs":"F#","ml":"OCaml","nim":"Nim","zig":"Zig",
 };
-
-export function getCurrentStreak(dayStats: DayStats[]): number {
-  if (dayStats.length === 0) return 0;
-  const today = new Date().toISOString().split("T")[0]!;
-  const sorted = dayStats.map(d => d.date).sort().reverse();
-  let streak = 0;
-  let expected = today;
-  for (const date of sorted) {
-    if (date === expected) {
-      streak++;
-      const d = new Date(expected);
-      d.setDate(d.getDate() - 1);
-      expected = d.toISOString().split("T")[0]!;
-    } else break;
-  }
-  return streak;
-}
-// Extended language aliases for common shorthands
-export const EXTRA_ALIASES: Record<string, string> = {
-  "mjs":"JavaScript","cjs":"JavaScript","mts":"TypeScript","cts":"TypeScript",
-  "jsx":"JavaScript","tsx":"TypeScript","rb":"Ruby","ex":"Elixir","exs":"Elixir",
-  "hs":"Haskell","clj":"Clojure","fs":"F#","ml":"OCaml","nim":"Nim","zig":"Zig",
-};
